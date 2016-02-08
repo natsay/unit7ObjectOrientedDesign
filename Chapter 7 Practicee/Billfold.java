@@ -1,4 +1,4 @@
-public class Billfold extends Card 
+     public class Billfold extends Card 
 {
     private Card card1;
     private Card card2; 

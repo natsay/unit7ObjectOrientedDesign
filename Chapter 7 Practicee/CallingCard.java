@@ -10,6 +10,16 @@ public class CallingCard extends Card
         CardNumber= Cardnumber;
         
     }
+    public boolean equals(Object other)
+    {
+        if(this.getClass()==other.getClass())
+        {
+            CallingCard otherCallingCard= (CallingCard) other; 
+            boolean isEqual= super.equals(other); 
+            return isEqual&& PIN.equals(otherCallingCard.CallingCard); 
+            return isEqual&& CardNumber.equals(otherCallingCard.CallingCard);
+        }    
+    }    
     
     public String format() 
     {

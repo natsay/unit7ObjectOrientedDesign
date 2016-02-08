@@ -4,6 +4,7 @@
 public class MeasurableTester
 {
    public static void main(String[] args)
+   //
    {
       Measurable[] accounts = new Measurable[3];
       accounts[0] = new BankAccount(0);

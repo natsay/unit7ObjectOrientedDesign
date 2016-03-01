@@ -11,45 +11,52 @@ public class ControlPanel extends JPanel
     private JButton color;
     private JButton circle;
     private JButton square; 
+    private DrawingPanel draw; 
 
-    private JLabel sampleText = new JLabel("Label");
-    
-   
+
     /**
      * Default constructor for objects of class ControlPanel
      */
-    public ControlPanel()
+    public ControlPanel(DrawingPanel canvas)
     {
         this.currentColor= new JPanel(); 
         this.color= new JButton("Pick Color"); 
+        this.draw=canvas; 
 
         this.circle= new JButton("Add Circle"); 
         this.square= new JButton("Add Square"); 
-        
+
         color.addActionListener(new ButtonListener()); 
-       
+   
+        Color background = canvas.getColor();
+        this.currentColor.setBackground(background);
+        
+        
         this.add(this.color); 
+        this.add(this.currentColor);
         this.add(this.circle); 
         this.add(this.square); 
         
-       
+
         
     }
-    
     public class ButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
-             Color c = JColorChooser.showDialog(null, "Choose a Color", sampleText.getForeground());
+             Color c = JColorChooser.showDialog(null, "Choose a Color",Color.WHITE);
              if (c != null)
              {
-                 sampleText.setForeground(c);
+               
                  currentColor.setBackground(c);
+                 
+                 
              }    
              
         }
     }     
 }
 
-  
+
+
 

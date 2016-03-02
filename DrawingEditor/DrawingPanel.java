@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JColorChooser;
 public class DrawingPanel extends JPanel 
 {
-    //     private ArrayList<Shape> shape; 
-    //     private Shape active; 
+    private ArrayList<Shape> shape; 
+    private Shape active; 
     private JPanel panel; 
     private Color activeColor;
     public DrawingPanel()
@@ -23,6 +23,16 @@ public class DrawingPanel extends JPanel
     {
          activeColor = JColorChooser.showDialog(this, "Choose a Color",Color.WHITE);
     }
+//     public void addCircle() 
+//     {
+//         Circle circle= new Circle(x,50,y,50); 
+//         repaint(); 
+//     }
+//     public void addSquare() 
+//     {
+//         Sqaure square= new Square(x,50,y,50); 
+//         repaint();  
+//     }     
 
     public void paintComponent(Graphics g) 
     {

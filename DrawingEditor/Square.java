@@ -1,40 +1,39 @@
+import java.awt.*;
+import java.awt.geom.*;
 
 
-/**
- * Write a description of class Square here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Square extends Shape  
+public class Square extends Shape
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+    private Point2D.Double center;
+    private double radius;
+    private Color color;
 
-    /**
-     * Default constructor for objects of class Square
-     */
-    public Square()
+   
+    public Square(Point2D.Double center, double radius, Color color)
     {
-        // initialise instance variables
-        x = 0;
+        //calls constructor of the parent class
+        super(center, radius, color);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+    boolean isInside(Point2D.Double point)
     {
-        // put your code here
-        return x+y;
+        //checks to see if mouse is inside the shape 
+        return Math.abs(super.getCenter().getY()-point.getY())<=super.getRadius()&&Math.abs(super.getCenter().getX()-point.getX())<=super.getRadius();
+
+    }
+
+    void draw(Graphics g2, boolean filled)
+    {
+        //fills in shape
+        g2.setColor(super.getColor());
+        if(filled)        
+        {
+            g2.fillRect((int)super.getCenter().getX()-(int)super.getRadius(),(int)super.getCenter().getY()-(int)super.getRadius(),(int)super.getRadius()*2, (int)super.getRadius()*2);
+        }
+        else
+        {
+            g2.drawRect((int)super.getCenter().getX()-(int)super.getRadius(),(int)super.getCenter().getY()-(int)super.getRadius(),(int)super.getRadius()*2, (int)super.getRadius()*2);
+        }
     }
 
 }

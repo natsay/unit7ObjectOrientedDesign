@@ -1,69 +1,81 @@
-import javax.swing.JPanel; 
-import javax.swing.JButton; 
-import javax.swing.JLabel;
-import java.awt.Color; 
-import javax.swing.JColorChooser;
-import java.awt.event.ActionEvent; 
-import java.awt.event.ActionListener; 
-public class ControlPanel extends JPanel 
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class ControlPanel extends JPanel
 {
-    private JPanel currentColor; 
+    //instance variables for button,panel and a DrawingPanel
+    private JPanel currentColor;
     private JButton color;
     private JButton circle;
-    private JButton square; 
-    private DrawingPanel draw; 
+    private JButton square;
+    private DrawingPanel draw;
 
-    /**
-     * Default constructor for objects of class ControlPanel
-     */
     public ControlPanel(DrawingPanel canvas)
-    {
-        this.currentColor= new JPanel(); 
-        this.color= new JButton("Pick Color"); 
-        this.draw=canvas; 
-
-        this.circle= new JButton("Add Circle"); 
-        this.square= new JButton("Add Square"); 
-
-        color.addActionListener(new ButtonListener()); 
-        square.addActionListener(new ButtonListener()); 
-        circle.addActionListener(new ButtonListener()); 
-
-        Color background = canvas.getColor();
-        this.currentColor.setBackground(background);
-
-        this.add(this.color); 
+    {                
+        //instance variable draw has been assigned to canvas
+        this.draw = canvas;
+        //adds new Button 
+        this.color = new JButton("Add Color");
+        //assigns a listener with the button
+        this.color.addActionListener(new ColorButton ());
+        //adds button to the JPanel 
+        this.add(this.color);
+        //asigns currentColor to a new JPanel 
+        this.currentColor = new JPanel();
+        //adds currentColor to JPanel 
         this.add(this.currentColor);
-        this.add(this.circle); 
-        this.add(this.square); 
-
+        //sets background to default color 
+        currentColor.setBackground(draw.getColor());
+        //adds a new Button
+        this.circle = new JButton("Add Circle");
+        //asigns a listener to the button
+        this.circle.addActionListener(new CircleButton());
+        //adds button to the panel
+        this.add(this.circle);
+        //adds new button 
+        this.square = new JButton("Add Square");
+        //asigns this button to a listener
+        this.square.addActionListener(new SquareButton());
+        //adds button to the panel 
+        this.add(this.square);
         
+        
+
     }
-    public class ButtonListener implements ActionListener
+    public class ColorButton implements ActionListener
     {
-        public void actionPerformed(ActionEvent e) 
-        {
-            if(e.getSource()==color)
-            {
-                draw.pickColor(); 
-                currentColor.setBackground(draw.getColor()); 
-            }
+
+        public void actionPerformed(ActionEvent e)
+        {        
             
-            else if(e.getSource()==circle) 
-            {
-                //draw.addCircle() 
-                //print circle was pressed
-            }
-            
-            else if(e.getSource()==square) 
-            {
-            }
+            draw.pickColor();
+            currentColor.setBackground(draw.getColor());
         }
-    } 
+    }
     
 
+    public class CircleButton implements ActionListener
+    {
+        
+        public void actionPerformed(ActionEvent e)
+        {
 
+            draw.addCircle();
+            draw.repaint();
+        }
+    }
     
-}
+
+    public class SquareButton implements ActionListener
+    {
+     
+        public void actionPerformed(ActionEvent e)
+        {
+            draw.addSquare();
+            draw.repaint();
+        }
+    }
 
 
+}    
